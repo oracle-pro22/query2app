@@ -2,18 +2,13 @@ version: 0.1
 component: build
 timeoutInSeconds: 1200
 shell: bash
-env:
-  exportedVariables:
-    - artifactVersion
 steps:
   - type: Command
-    name: Package source
+    name: Package app
     command: |
       set -eux
-      export artifactVersion="${OCI_BUILD_RUN_ID}"
       mkdir -p dist
       tar --exclude=.git --exclude=dist -czf dist/app.tgz .
-      echo "artifactVersion=${artifactVersion}"
 outputArtifacts:
   - name: app-package
     type: BINARY

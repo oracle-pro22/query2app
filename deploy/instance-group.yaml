@@ -1,0 +1,17 @@
+version: 1.0
+component: deployment
+shell: bash
+steps:
+  - stepType: Command
+    name: Unpack artifact
+    command: |
+      set -eux
+      mkdir -p /opt/query2app
+      tar -xzf app.tgz -C /opt/query2app
+
+  - stepType: Command
+    name: Start app
+    command: |
+      set -eux
+      cd /opt/query2app
+      ./start.sh
